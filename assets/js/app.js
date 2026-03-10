@@ -239,15 +239,34 @@ class CertificateGenerator {
       return '';
     }
     
+    const hostname = window.location.hostname;
     const path = window.location.pathname;
-    // 如果路径包含仓库名（如 /xinshidai/），则返回基础路径
+    
+    // 如果是 GitHub Pages (github.io 域名)
+    if (hostname.includes('github.io')) {
+      // 提取仓库名，格式通常是 username.github.io/repo-name/
+      const parts = path.split('/').filter(p => p);
+      if (parts.length > 0) {
+        // 第一个部分通常是仓库名
+        const repoName = parts[0];
+        // 排除 index.html 等文件名
+        if (repoName && !repoName.includes('.')) {
+          return '/' + repoName + '/';
+        }
+      }
+      // 如果路径是根路径，可能是自定义域名，返回空字符串
+      return '';
+    }
+    
+    // 对于其他情况，检查路径是否包含仓库名
     // 排除常见的系统路径（如 /Users/, /home/ 等）
     const match = path.match(/^\/([^\/]+)\//);
     if (match && match[1] !== '' && 
         match[1] !== 'Users' && 
         match[1] !== 'home' && 
         match[1] !== 'var' && 
-        match[1] !== 'tmp') {
+        match[1] !== 'tmp' &&
+        match[1] !== 'index.html') {
       return '/' + match[1] + '/';
     }
     // 否则返回空字符串（用于本地开发服务器或根路径）
@@ -520,6 +539,17 @@ class CertificateGenerator {
     // 获取模板路径：对于 reward500，vip 是语言代码；对于其他类型，vip 是数字
     const templatePath = this.templates[this.currentCountry][this.currentVip];
     const fullPath = this.getPath(templatePath);
+    
+    // 调试信息
+    console.log('Loading template:', {
+      country: this.currentCountry,
+      vip: this.currentVip,
+      templatePath: templatePath,
+      basePath: this.basePath,
+      fullPath: fullPath,
+      hostname: window.location.hostname,
+      pathname: window.location.pathname
+    });
     
     // 先尝试使用 crossOrigin 加载（避免 canvas 被污染）
     this.template.crossOrigin = 'anonymous';

@@ -818,10 +818,10 @@ class CertificateGenerator {
         grad.addColorStop(0.75, '#ad752f');
         grad.addColorStop(1, '#d6a659');
       } else {
-        // 其他模板使用原来的渐变
+        // 晋级模板：从上到下渐变
         grad.addColorStop(0, '#d88920');
-        grad.addColorStop(0.35, '#381909');
-        grad.addColorStop(0.7, '#341b08');
+        grad.addColorStop(0.33, '#381909');
+        grad.addColorStop(0.67, '#341b08');
         grad.addColorStop(1, '#341b08');
       }
 

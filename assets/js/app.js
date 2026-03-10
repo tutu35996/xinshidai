@@ -1,7 +1,7 @@
 // SW证书生成器 v2.0 - 主要JavaScript逻辑
 
 // 版本号配置 - 每次更新时递增此版本号
-const APP_VERSION = '1.0.4';
+const APP_VERSION = '1.0.5';
 
 class CertificateGenerator {
   constructor() {

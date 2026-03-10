@@ -12,20 +12,23 @@ class CertificateGenerator {
     this.errorOverlay = document.getElementById('errorOverlay');
     this.retryBtn = document.getElementById('retryBtn');
     
+    // 获取基础路径（用于 GitHub Pages）
+    this.basePath = this.getBasePath();
+    
     // 遮罩图层
     this.mask = new Image();
     this.mask.crossOrigin = 'anonymous';
-    this.mask.src = 'assets/images/masks/mask1.png';
+    this.mask.src = this.getPath('assets/images/masks/mask1.png');
     
     // 第二个遮罩图层
     this.mask2 = new Image();
     this.mask2.crossOrigin = 'anonymous';
-    this.mask2.src = 'assets/images/masks/mask2.png';
+    this.mask2.src = this.getPath('assets/images/masks/mask2.png');
     
     // 第三个遮罩图层（用于实物模板）
     this.mask3 = new Image();
     this.mask3.crossOrigin = 'anonymous';
-    this.mask3.src = 'assets/images/masks/mask3.png';
+    this.mask3.src = this.getPath('assets/images/masks/mask3.png');
     
     // 模板配置：晋级证书模板（LV1-LV9）
     this.templates = {
@@ -227,6 +230,28 @@ class CertificateGenerator {
     this.offsetY = 0;
     
     this.init();
+  }
+  
+  // 获取基础路径（用于 GitHub Pages）
+  getBasePath() {
+    const path = window.location.pathname;
+    // 如果路径包含仓库名（如 /xinshidai/），则返回基础路径
+    const match = path.match(/^\/([^\/]+)\//);
+    if (match && match[1] !== '') {
+      return '/' + match[1] + '/';
+    }
+    // 否则返回根路径（用于本地开发）
+    return './';
+  }
+  
+  // 修正资源路径
+  getPath(relativePath) {
+    // 如果路径已经是绝对路径，直接返回
+    if (relativePath.startsWith('http://') || relativePath.startsWith('https://') || relativePath.startsWith('/')) {
+      return relativePath;
+    }
+    // 否则添加基础路径
+    return this.basePath + relativePath;
   }
   
   async init() {
@@ -479,10 +504,11 @@ class CertificateGenerator {
     
     // 获取模板路径：对于 reward500，vip 是语言代码；对于其他类型，vip 是数字
     const templatePath = this.templates[this.currentCountry][this.currentVip];
+    const fullPath = this.getPath(templatePath);
     
     // 先尝试使用 crossOrigin 加载（避免 canvas 被污染）
     this.template.crossOrigin = 'anonymous';
-    this.template.src = templatePath;
+    this.template.src = fullPath;
     
     this.template.onload = () => {
       // 根据模板实际尺寸自适应画布大小
@@ -501,11 +527,11 @@ class CertificateGenerator {
       if (this.template.crossOrigin === 'anonymous') {
         console.warn('使用 crossOrigin 加载失败，尝试不使用 crossOrigin');
         this.template.crossOrigin = null;
-        this.template.src = templatePath;
+        this.template.src = fullPath;
         return;
       }
       
-      console.warn(`模板文件 ${templatePath} 未找到`);
+      console.warn(`模板文件 ${fullPath} 未找到`);
       this.hideLoading();
       this.showError();
     };

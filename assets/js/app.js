@@ -234,20 +234,35 @@ class CertificateGenerator {
   
   // 获取基础路径（用于 GitHub Pages）
   getBasePath() {
+    // 如果是 file:// 协议（本地文件），返回空字符串
+    if (window.location.protocol === 'file:') {
+      return '';
+    }
+    
     const path = window.location.pathname;
     // 如果路径包含仓库名（如 /xinshidai/），则返回基础路径
+    // 排除常见的系统路径（如 /Users/, /home/ 等）
     const match = path.match(/^\/([^\/]+)\//);
-    if (match && match[1] !== '') {
+    if (match && match[1] !== '' && 
+        match[1] !== 'Users' && 
+        match[1] !== 'home' && 
+        match[1] !== 'var' && 
+        match[1] !== 'tmp') {
       return '/' + match[1] + '/';
     }
-    // 否则返回根路径（用于本地开发）
-    return './';
+    // 否则返回空字符串（用于本地开发服务器或根路径）
+    return '';
   }
   
   // 修正资源路径
   getPath(relativePath) {
-    // 如果路径已经是绝对路径，直接返回
-    if (relativePath.startsWith('http://') || relativePath.startsWith('https://') || relativePath.startsWith('/')) {
+    // 如果路径已经是绝对路径（http/https/绝对路径），直接返回
+    if (relativePath.startsWith('http://') || relativePath.startsWith('https://') || 
+        (relativePath.startsWith('/') && !relativePath.startsWith('//'))) {
+      return relativePath;
+    }
+    // 如果基础路径为空，直接返回相对路径
+    if (this.basePath === '') {
       return relativePath;
     }
     // 否则添加基础路径

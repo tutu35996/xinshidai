@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新时代证书生成</title>
+<!-- 预加载字体 -->
+<link rel="preload" href="CanvaSans-Regular.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="AlexBrush-Regular-OTF.otf" as="font" type="font/otf" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  @font-face {
+    font-family: 'CanvaSans';
+    src: url('CanvaSans-Regular.otf') format('opentype');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'AlexBrush';
+    src: url('AlexBrush-Regular-OTF.otf') format('opentype');
+    font-display: swap;
+  }
+</style>
+<!-- 标签页图标（Favicon） -->
+<link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/nicepage-logo.png">
+<link rel="apple-touch-icon" href="https://img.icons8.com/fluency/48/nicepage-logo.png">
+<!-- 图标库（Font Awesome） -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="sidebar">
+  <h2><i class="fa-solid fa-globe"></i> 选择模板</h2>
+  
+  <div class="country-section">
+    <div class="country-title" data-country="english"><i class="fa-solid fa-flag"></i> 晋级 - 英语 <span class="expand-icon"><i class="fa-solid fa-chevron-down"></i></span></div>
+    <div class="vip-grid" data-country="english">
+      <div class="vip-btn" data-country="english" data-vip="1">VIP 1</div>
+      <div class="vip-btn" data-country="english" data-vip="2">VIP 2</div>
+      <div class="vip-btn" data-country="english" data-vip="3">VIP 3</div>
+      <div class="vip-btn" data-country="english" data-vip="4">VIP 4</div>
+      <div class="vip-btn" data-country="english" data-vip="5">VIP 5</div>
+      <div class="vip-btn" data-country="english" data-vip="6">VIP 6</div>
+      <div class="vip-btn" data-country="english" data-vip="7">VIP 7</div>
+      <div class="vip-btn" data-country="english" data-vip="8">VIP 8</div>
+      <div class="vip-btn" data-country="english" data-vip="9">VIP 9</div>
+    </div>
+  </div>
+  
+  <div class="country-section">
+    <div class="country-title" data-country="vietnamese"><i class="fa-solid fa-flag"></i> 晋级 - 越南语 <span class="expand-icon"><i class="fa-solid fa-chevron-down"></i></span></div>
+    <div class="vip-grid" data-country="vietnamese">
+      <div class="vip-btn" data-country="vietnamese" data-vip="1">VIP 1</div>
+      <div class="vip-btn" data-country="vietnamese" data-vip="2">VIP 2</div>
+      <div class="vip-btn" data-country="vietnamese" data-vip="3">VIP 3</div>
+      <div class="vip-btn" data-country="vietnamese" data-vip="4">VIP 4</div>
+      <div class="vip-btn" data-country="vietnamese" data-vip="5">VIP 5</div>
+      <div class="vip-btn" data-country="vietnamese" data-vip="6">VIP 6</div>
+      <div class="vip-btn" data-country="vietnamese" data-vip="7">VIP 7</div>
+      <div class="vip-btn" data-country="vietnamese" data-vip="8">VIP 8</div>
+      <div class="vip-btn" data-country="vietnamese" data-vip="9">VIP 9</div>
+    </div>
+  </div>
+  
+  <div class="country-section">
+    <div class="country-title" data-country="arabic"><i class="fa-solid fa-flag"></i> 晋级 - 阿拉伯语 <span class="expand-icon"><i class="fa-solid fa-chevron-down"></i></span></div>
+    <div class="vip-grid" data-country="arabic">
+      <div class="vip-btn" data-country="arabic" data-vip="1">VIP 1</div>
+      <div class="vip-btn" data-country="arabic" data-vip="2">VIP 2</div>
+      <div class="vip-btn" data-country="arabic" data-vip="3">VIP 3</div>
+      <div class="vip-btn" data-country="arabic" data-vip="4">VIP 4</div>
+      <div class="vip-btn" data-country="arabic" data-vip="5">VIP 5</div>
+      <div class="vip-btn" data-country="arabic" data-vip="6">VIP 6</div>
+      <div class="vip-btn" data-country="arabic" data-vip="7">VIP 7</div>
+      <div class="vip-btn" data-country="arabic" data-vip="8">VIP 8</div>
+      <div class="vip-btn" data-country="arabic" data-vip="9">VIP 9</div>
+    </div>
+  </div>
+  
+  <div class="country-section">
+    <div class="country-title" data-country="portuguese"><i class="fa-solid fa-flag"></i> 晋级 - 葡萄牙语 <span class="expand-icon"><i class="fa-solid fa-chevron-down"></i></span></div>
+    <div class="vip-grid" data-country="portuguese">
+      <div class="vip-btn" data-country="portuguese" data-vip="1">VIP 1</div>
+      <div class="vip-btn" data-country="portuguese" data-vip="2">VIP 2</div>
+      <div class="vip-btn" data-country="portuguese" data-vip="3">VIP 3</div>
+      <div class="vip-btn" data-country="portuguese" data-vip="4">VIP 4</div>
+      <div class="vip-btn" data-country="portuguese" data-vip="5">VIP 5</div>
+      <div class="vip-btn" data-country="portuguese" data-vip="6">VIP 6</div>
+      <div class="vip-btn" data-country="portuguese" data-vip="7">VIP 7</div>
+      <div class="vip-btn" data-country="portuguese" data-vip="8">VIP 8</div>
+      <div class="vip-btn" data-country="portuguese" data-vip="9">VIP 9</div>
+    </div>
+  </div>
+  
+  <div class="country-section batch-section">
+    <div class="country-title batch-title" data-country="batch1"><i class="fa-solid fa-trophy"></i> 第一批奖励 <span class="expand-icon"><i class="fa-solid fa-chevron-down"></i></span></div>
+    <div class="batch-content" data-country="batch1">
+      <div class="country-section nested-section">
+        <div class="country-title" data-country="batch1-reward500"><i class="fa-solid fa-dollar-sign"></i> 500美金 <span class="expand-icon"><i class="fa-solid fa-chevron-down"></i></span></div>
+        <div class="vip-grid" data-country="batch1-reward500">
+          <div class="vip-btn" data-country="reward500" data-vip="english">英语</div>
+          <div class="vip-btn" data-country="reward500" data-vip="vietnamese">越南语</div>
+          <div class="vip-btn" data-country="reward500" data-vip="arabic">阿拉伯语</div>
+          <div class="vip-btn" data-country="reward500" data-vip="portuguese">葡萄牙语</div>
+        </div>
+      </div>
+      <div class="country-section nested-section">
+        <div class="country-title" data-country="batch1-phone1800"><i class="fa-solid fa-mobile-screen-button"></i> 1800手机 <span class="expand-icon"><i class="fa-solid fa-chevron-down"></i></span></div>
+        <div class="vip-grid" data-country="batch1-phone1800">
+          <div class="vip-btn" data-country="phone1800" data-vip="english">英语</div>
+          <div class="vip-btn" data-country="phone1800" data-vip="arabic">阿拉伯语</div>
+        </div>
+      </div>
+      <div class="country-section nested-section">
+        <div class="country-title" data-country="batch1-goldbar"><i class="fa-solid fa-coins"></i> 3888金条 <span class="expand-icon"><i class="fa-solid fa-chevron-down"></i></span></div>
+        <div class="vip-grid" data-country="batch1-goldbar">
+          <div class="vip-btn" data-country="goldbar" data-vip="english">英语</div>
+          <div class="vip-btn" data-country="goldbar" data-vip="arabic">阿拉伯语</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="country-section batch-section">
+    <div class="country-title batch-title" data-country="batch2"><i class="fa-solid fa-trophy"></i> 第二批奖励 <span class="expand-icon"><i class="fa-solid fa-chevron-down"></i></span></div>
+    <div class="batch-content" data-country="batch2">
+      <div class="country-section nested-section">
+        <div class="country-title" data-country="batch2-reward500"><i class="fa-solid fa-dollar-sign"></i> 500美金 <span class="expand-icon"><i class="fa-solid fa-chevron-down"></i></span></div>
+        <div class="vip-grid" data-country="batch2-reward500">
+          <div class="vip-btn" data-country="reward500" data-vip="english">英语</div>
+          <div class="vip-btn" data-country="reward500" data-vip="vietnamese">越南语</div>
+          <div class="vip-btn" data-country="reward500" data-vip="arabic">阿拉伯语</div>
+          <div class="vip-btn" data-country="reward500" data-vip="portuguese">葡萄牙语</div>
+        </div>
+      </div>
+      <div class="country-section nested-section">
+        <div class="country-title" data-country="batch2-phone1699"><i class="fa-solid fa-mobile-screen-button"></i> 1699手机 <span class="expand-icon"><i class="fa-solid fa-chevron-down"></i></span></div>
+        <div class="vip-grid" data-country="batch2-phone1699">
+          <div class="vip-btn" data-country="phone1699" data-vip="english">英语</div>
+        </div>
+      </div>
+      <div class="country-section nested-section">
+        <div class="country-title" data-country="batch2-fund5000"><i class="fa-solid fa-hand-holding-heart"></i> 5000基金 <span class="expand-icon"><i class="fa-solid fa-chevron-down"></i></span></div>
+        <div class="vip-grid" data-country="batch2-fund5000">
+          <div class="vip-btn" data-country="fund5000" data-vip="english">英语</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="country-section">
+    <div class="country-title" data-country="birthday"><i class="fa-solid fa-birthday-cake"></i> 实物 - 生日奖励 <span class="expand-icon"><i class="fa-solid fa-chevron-down"></i></span></div>
+    <div class="vip-grid" data-country="birthday">
+      <div class="vip-btn" data-country="birthday" data-vip="50">50英语</div>
+      <div class="vip-btn" data-country="birthday" data-vip="100">100英语</div>
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+  <h1 class="title">新时代证书生成</h1>
+  
+  <div class="content-wrapper">
+    <!-- 中间控制区域 -->
+    <div class="controls-panel">
+      <div class="controls">
+        <h3><i class="fa-solid fa-palette"></i> 编辑控制</h3>
+        
+        
+        <div class="control-section">
+          <h4><i class="fa-solid fa-camera"></i> 头像设置</h4>
+          <div class="input-row">
+            <label>上传头像:</label>
+            <input type="file" id="avatarUpload" accept="image/*">
+          <small class="upload-tip"><i class="fa-solid fa-lightbulb"></i> 提示：也可以直接粘贴图片 (Ctrl+V)</small>
+          </div>
+        </div>
+        
+        <div class="control-section">
+          <h4><i class="fa-solid fa-id-card"></i> UID设置</h4>
+            <div class="uid-row">
+            <div class="uid-main">
+              <div class="input-row">
+                <label>UID:</label>
+                <input type="text" id="uidInput" placeholder="输入UID">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="control-section">
+          <h4><i class="fa-solid fa-signature"></i> 姓名设置</h4>
+            <div class="name-row">
+            <div class="name-main">
+              <div class="input-row">
+                <label>姓名:</label>
+                <input type="text" id="nameInput" placeholder="输入姓名">
+              </div>
+              <div class="name-controls-row">
+                <div class="button-group name-size-buttons">
+                  <button class="small-btn" id="nameBigger">放大姓名</button>
+                  <button class="small-btn" id="nameSmaller">缩小姓名</button>
+                </div>
+                <div class="name-arrows">
+                  <button class="small-btn name-arrow name-arrow-up" id="nameUp"></button>
+                  <button class="small-btn name-arrow name-arrow-left" id="nameLeft"></button>
+                  <button class="small-btn name-arrow name-arrow-right" id="nameRight"></button>
+                  <button class="small-btn name-arrow name-arrow-down" id="nameDown"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="coords" id="coordsDisplay">
+          坐标信息将显示在此处
+        </div>
+      </div>
+    </div>
+    
+    <!-- 右侧图片展示区域 -->
+    <div class="preview-panel">
+      <div class="preview-container">
+        <div class="preview-header">
+          <h3><i class="fa-solid fa-image"></i> 证书预览</h3>
+          <div class="preview-buttons">
+            <button class="copy-btn" id="copyBtn" title="复制图片到剪贴板">
+              <i class="fa-solid fa-copy"></i> 复制图片
+            </button>
+            <button class="download-btn" id="downloadBtn" title="下载证书图片">
+              <i class="fa-solid fa-download"></i> 下载证书
+            </button>
+          </div>
+        </div>
+        <div id="canvasContainer">
+          <!-- 主canvas用于绘制、显示和下载 -->
+          <canvas id="certificateCanvas"></canvas>
+          <!-- 加载动画 -->
+          <div id="loadingOverlay" class="loading-overlay">
+            <div class="loading-spinner">
+              <div class="spinner"></div>
+              <p class="loading-text">正在加载模板...</p>
+            </div>
+          </div>
+          
+          <!-- 错误提示 -->
+          <div id="errorOverlay" class="error-overlay hidden">
+            <div class="error-content">
+              <div class="error-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+              <h3 class="error-title">模板加载失败</h3>
+              <p class="error-message">未找到模板文件，请刷新后重试</p>
+              <button id="retryBtn" class="retry-btn"><i class="fa-solid fa-rotate-right"></i> 重新加载</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 免责声明 -->
+<div class="disclaimer">
+  <p><strong>免责声明 / 风云设计工作室</strong></p>
+  <p>本工具仅供娱乐使用。用户需确保输入内容合法且不侵犯第三方权益。开发者不对任何因使用本工具产生的法律或版权问题承担责任。</p>
+</div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

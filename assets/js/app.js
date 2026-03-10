@@ -1,5 +1,8 @@
 // SW证书生成器 v2.0 - 主要JavaScript逻辑
 
+// 版本号配置 - 每次更新时递增此版本号
+const APP_VERSION = '1.0.3';
+
 class CertificateGenerator {
   constructor() {
     this.canvas = document.getElementById('certificateCanvas');
@@ -292,10 +295,21 @@ class CertificateGenerator {
     // 等待字体加载完成
     await document.fonts.ready;
     
+    // 显示版本号
+    this.displayVersion();
+    
     this.setupEventListeners();
     // 初始显示加载动画
     this.showLoading();
     this.loadTemplate();
+  }
+  
+  // 显示版本号
+  displayVersion() {
+    const versionElement = document.getElementById('versionInfo');
+    if (versionElement) {
+      versionElement.textContent = `v${APP_VERSION}`;
+    }
   }
   
   // 根据语言设置默认位置

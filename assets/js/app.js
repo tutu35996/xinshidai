@@ -22,86 +22,92 @@ class CertificateGenerator {
     this.mask = new Image();
     this.mask.crossOrigin = 'anonymous';
     this.mask.src = this.getPath('assets/images/masks/mask1.png');
+    this.mask.onload = () => this.safeRedraw('mask1 loaded');
+    this.mask.onerror = (e) => console.warn('mask1 load failed', this.mask.src, e);
     
     // 第二个遮罩图层
     this.mask2 = new Image();
     this.mask2.crossOrigin = 'anonymous';
     this.mask2.src = this.getPath('assets/images/masks/mask2.png');
+    this.mask2.onload = () => this.safeRedraw('mask2 loaded');
+    this.mask2.onerror = (e) => console.warn('mask2 load failed', this.mask2.src, e);
     
     // 第三个遮罩图层（用于实物模板）
     this.mask3 = new Image();
     this.mask3.crossOrigin = 'anonymous';
     this.mask3.src = this.getPath('assets/images/masks/mask3.png');
+    this.mask3.onload = () => this.safeRedraw('mask3 loaded');
+    this.mask3.onerror = (e) => console.warn('mask3 load failed', this.mask3.src, e);
     
     // 模板配置：晋级证书模板（LV1-LV9）
     this.templates = {
       english: {
-        1: "templates/english/English_vip1.png",
-        2: "templates/english/English_vip2.png",
-        3: "templates/english/English_vip3.png",
-        4: "templates/english/English_vip4.png",
-        5: "templates/english/English_vip5.png",
-        6: "templates/english/English_vip6.png",
-        7: "templates/english/English_vip7.png",
-        8: "templates/english/English_vip8.png",
-        9: "templates/english/English_vip9.png"
+        1: "templates/english/English_vip1.jpg",
+        2: "templates/english/English_vip2.jpg",
+        3: "templates/english/English_vip3.jpg",
+        4: "templates/english/English_vip4.jpg",
+        5: "templates/english/English_vip5.jpg",
+        6: "templates/english/English_vip6.jpg",
+        7: "templates/english/English_vip7.jpg",
+        8: "templates/english/English_vip8.jpg",
+        9: "templates/english/English_vip9.jpg"
       },
       vietnamese: {
-        1: "templates/vietnamese/Vietnamese_vip1.png",
-        2: "templates/vietnamese/Vietnamese_vip2.png",
-        3: "templates/vietnamese/Vietnamese_vip3.png",
-        4: "templates/vietnamese/Vietnamese_vip4.png",
-        5: "templates/vietnamese/Vietnamese_vip5.png",
-        6: "templates/vietnamese/Vietnamese_vip6.png",
-        7: "templates/vietnamese/Vietnamese_vip7.png",
-        8: "templates/vietnamese/Vietnamese_vip8.png",
-        9: "templates/vietnamese/Vietnamese_vip9.png"
+        1: "templates/vietnamese/Vietnamese_vip1.jpg",
+        2: "templates/vietnamese/Vietnamese_vip2.jpg",
+        3: "templates/vietnamese/Vietnamese_vip3.jpg",
+        4: "templates/vietnamese/Vietnamese_vip4.jpg",
+        5: "templates/vietnamese/Vietnamese_vip5.jpg",
+        6: "templates/vietnamese/Vietnamese_vip6.jpg",
+        7: "templates/vietnamese/Vietnamese_vip7.jpg",
+        8: "templates/vietnamese/Vietnamese_vip8.jpg",
+        9: "templates/vietnamese/Vietnamese_vip9.jpg"
       },
       arabic: {
-        1: "templates/arabic/Arabic_vip1.png",
-        2: "templates/arabic/Arabic_vip2.png",
-        3: "templates/arabic/Arabic_vip3.png",
-        4: "templates/arabic/Arabic_vip4.png",
-        5: "templates/arabic/Arabic_vip5.png",
-        6: "templates/arabic/Arabic_vip6.png",
-        7: "templates/arabic/Arabic_vip7.png",
-        8: "templates/arabic/Arabic_vip8.png",
-        9: "templates/arabic/Arabic_vip9.png"
+        1: "templates/arabic/Arabic_vip1.jpg",
+        2: "templates/arabic/Arabic_vip2.jpg",
+        3: "templates/arabic/Arabic_vip3.jpg",
+        4: "templates/arabic/Arabic_vip4.jpg",
+        5: "templates/arabic/Arabic_vip5.jpg",
+        6: "templates/arabic/Arabic_vip6.jpg",
+        7: "templates/arabic/Arabic_vip7.jpg",
+        8: "templates/arabic/Arabic_vip8.jpg",
+        9: "templates/arabic/Arabic_vip9.jpg"
       },
       portuguese: {
-        1: "templates/portuguese/Portuguese_vip1.png",
-        2: "templates/portuguese/Portuguese_vip2.png",
-        3: "templates/portuguese/Portuguese_vip3.png",
-        4: "templates/portuguese/Portuguese_vip4.png",
-        5: "templates/portuguese/Portuguese_vip5.png",
-        6: "templates/portuguese/Portuguese_vip6.png",
-        7: "templates/portuguese/Portuguese_vip7.png",
-        8: "templates/portuguese/Portuguese_vip8.png",
-        9: "templates/portuguese/Portuguese_vip9.png"
+        1: "templates/portuguese/Portuguese_vip1.jpg",
+        2: "templates/portuguese/Portuguese_vip2.jpg",
+        3: "templates/portuguese/Portuguese_vip3.jpg",
+        4: "templates/portuguese/Portuguese_vip4.jpg",
+        5: "templates/portuguese/Portuguese_vip5.jpg",
+        6: "templates/portuguese/Portuguese_vip6.jpg",
+        7: "templates/portuguese/Portuguese_vip7.jpg",
+        8: "templates/portuguese/Portuguese_vip8.jpg",
+        9: "templates/portuguese/Portuguese_vip9.jpg"
       },
       reward500: {
-        english: "templates/reward500/english/Reward500_english.png",
-        vietnamese: "templates/reward500/vietnamese/Reward500_vietnamese.png",
-        arabic: "templates/reward500/arabic/Reward500_arabic.png",
-        portuguese: "templates/reward500/portuguese/Reward500_portuguese.png"
+        english: "templates/reward500/english/Reward500_english.jpg",
+        vietnamese: "templates/reward500/vietnamese/Reward500_vietnamese.jpg",
+        arabic: "templates/reward500/arabic/Reward500_arabic.jpg",
+        portuguese: "templates/reward500/portuguese/Reward500_portuguese.jpg"
       },
       goldbar: {
-        english: "templates/goldbar/english/GoldBar_english.png",
-        arabic: "templates/goldbar/arabic/GoldBar_arabic.png"
+        english: "templates/goldbar/english/GoldBar_english.jpg",
+        arabic: "templates/goldbar/arabic/GoldBar_arabic.jpg"
       },
       phone1699: {
-        english: "templates/phone1699/english/Phone1699_english.png"
+        english: "templates/phone1699/english/Phone1699_english.jpg"
       },
       phone1800: {
-        english: "templates/phone1800/english/Phone1800_english.png",
-        arabic: "templates/phone1800/arabic/Phone1800_arabic.png"
+        english: "templates/phone1800/english/Phone1800_english.jpg",
+        arabic: "templates/phone1800/arabic/Phone1800_arabic.jpg"
       },
       birthday: {
-        "50": "templates/birthday/english/Birthday_50_english.png",
-        "100": "templates/birthday/english/Birthday_100_english.png"
+        "50": "templates/birthday/english/Birthday_50_english.jpg",
+        "100": "templates/birthday/english/Birthday_100_english.jpg"
       },
       fund5000: {
-        english: "templates/fund5000/english/Fund5000_english.png"
+        english: "templates/fund5000/english/Fund5000_english.jpg"
       }
     };
     
@@ -233,6 +239,18 @@ class CertificateGenerator {
     this.offsetY = 0;
     
     this.init();
+  }
+
+  // 避免在模板尚未加载完成时重绘导致异常
+  safeRedraw(reason = '') {
+    try {
+      if (this.template && this.template.complete && this.template.naturalWidth > 0) {
+        // console.debug('[safeRedraw]', reason);
+        this.drawAll();
+      }
+    } catch (e) {
+      console.warn('safeRedraw failed', reason, e);
+    }
   }
   
   // 获取基础路径（用于 GitHub Pages）
@@ -410,22 +428,30 @@ class CertificateGenerator {
     
     
     // 姓名大小调整按钮（增大步长）
-    document.getElementById('nameBigger').onclick = () => { this.nameSize += 10; this.drawAll(); };
-    document.getElementById('nameSmaller').onclick = () => { this.nameSize = Math.max(10, this.nameSize - 10); this.drawAll(); };
+    const nameBigger = document.getElementById('nameBigger');
+    const nameSmaller = document.getElementById('nameSmaller');
+    if (nameBigger) nameBigger.onclick = () => { this.nameSize += 10; this.drawAll(); };
+    if (nameSmaller) nameSmaller.onclick = () => { this.nameSize = Math.max(10, this.nameSize - 10); this.drawAll(); };
     
     // 姓名位置调整按钮
-    document.getElementById('nameUp').onclick = () => { this.nameY -= 5; this.drawAll(); };
-    document.getElementById('nameDown').onclick = () => { this.nameY += 5; this.drawAll(); };
-    document.getElementById('nameLeft').onclick = () => { this.nameX -= 5; this.drawAll(); };
-    document.getElementById('nameRight').onclick = () => { this.nameX += 5; this.drawAll(); };
+    const nameUp = document.getElementById('nameUp');
+    const nameDown = document.getElementById('nameDown');
+    const nameLeft = document.getElementById('nameLeft');
+    const nameRight = document.getElementById('nameRight');
+    if (nameUp) nameUp.onclick = () => { this.nameY -= 5; this.drawAll(); };
+    if (nameDown) nameDown.onclick = () => { this.nameY += 5; this.drawAll(); };
+    if (nameLeft) nameLeft.onclick = () => { this.nameX -= 5; this.drawAll(); };
+    if (nameRight) nameRight.onclick = () => { this.nameX += 5; this.drawAll(); };
     
     // 头像大小 & 位置调整按钮
 
     // 下载功能
-    document.getElementById('downloadBtn').onclick = () => this.downloadCertificate();
+    const downloadBtn = document.getElementById('downloadBtn');
+    if (downloadBtn) downloadBtn.onclick = () => this.downloadCertificate();
     
     // 复制功能
-    document.getElementById('copyBtn').onclick = () => this.copyCertificate();
+    const copyBtn = document.getElementById('copyBtn');
+    if (copyBtn) copyBtn.onclick = () => this.copyCertificate();
     
     // 重试按钮
     if (this.retryBtn) {
@@ -435,15 +461,14 @@ class CertificateGenerator {
     }
     
     // 输入监听（UID 和姓名）
-    this.uidInput.addEventListener('input', () => this.drawAll());
-    this.nameInput.addEventListener('input', () => {
+    if (this.uidInput) this.uidInput.addEventListener('input', () => this.drawAll());
+    if (this.nameInput) this.nameInput.addEventListener('input', () => {
       this.handleNameInputFormat();
       this.drawAll();
     });
     
-    // 默认选择第一个模板并展开第一个国家
-    document.addEventListener('DOMContentLoaded', () => {
-      // 默认展开第一个国家
+    // 默认展开第一个国家 & 选中第一个按钮（脚本在 body 底部加载时，DOM 通常已就绪）
+    const initSidebarState = () => {
       const firstCountry = document.querySelector('.country-title');
       if (firstCountry) {
         const country = firstCountry.dataset.country;
@@ -453,13 +478,14 @@ class CertificateGenerator {
           firstCountry.classList.remove('collapsed');
         }
       }
-      
-      // 默认选择第一个VIP按钮
       const firstBtn = document.querySelector('.vip-btn');
-      if (firstBtn) {
-        firstBtn.classList.add('active');
-      }
-    });
+      if (firstBtn) firstBtn.classList.add('active');
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSidebarState);
+    } else {
+      initSidebarState();
+    }
   }
   
   toggleCountry(clickedTitle) {

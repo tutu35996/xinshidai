@@ -1,7 +1,7 @@
 // SW证书生成器 v2.0 - 主要JavaScript逻辑
 
 // 版本号配置 - 每次更新时递增此版本号
-const APP_VERSION = '1.0.3';
+const APP_VERSION = '1.0.4';
 
 class CertificateGenerator {
   constructor() {
@@ -239,25 +239,37 @@ class CertificateGenerator {
   getBasePath() {
     // 如果是 file:// 协议（本地文件），返回空字符串
     if (window.location.protocol === 'file:') {
+      console.log('检测到 file:// 协议，使用空基础路径');
       return '';
     }
     
     const hostname = window.location.hostname;
     const path = window.location.pathname;
+    const origin = window.location.origin;
+    
+    console.log('路径检测信息:', {
+      protocol: window.location.protocol,
+      hostname: hostname,
+      pathname: path,
+      origin: origin
+    });
     
     // 如果是 GitHub Pages (github.io 域名)
     if (hostname.includes('github.io')) {
       // 提取仓库名，格式通常是 username.github.io/repo-name/
-      const parts = path.split('/').filter(p => p);
+      const parts = path.split('/').filter(p => p && p !== 'index.html');
       if (parts.length > 0) {
         // 第一个部分通常是仓库名
         const repoName = parts[0];
         // 排除 index.html 等文件名
         if (repoName && !repoName.includes('.')) {
-          return '/' + repoName + '/';
+          const basePath = '/' + repoName + '/';
+          console.log('检测到 GitHub Pages，基础路径:', basePath);
+          return basePath;
         }
       }
       // 如果路径是根路径，可能是自定义域名，返回空字符串
+      console.log('GitHub Pages 根路径，使用空基础路径');
       return '';
     }
     
@@ -270,9 +282,12 @@ class CertificateGenerator {
         match[1] !== 'var' && 
         match[1] !== 'tmp' &&
         match[1] !== 'index.html') {
-      return '/' + match[1] + '/';
+      const basePath = '/' + match[1] + '/';
+      console.log('检测到子路径，基础路径:', basePath);
+      return basePath;
     }
     // 否则返回空字符串（用于本地开发服务器或根路径）
+    console.log('使用空基础路径（本地开发服务器或根路径）');
     return '';
   }
   
@@ -581,7 +596,18 @@ class CertificateGenerator {
       this.drawAll();
     };
     
-    this.template.onerror = () => {
+    this.template.onerror = (error) => {
+      console.error('图片加载错误:', {
+        error: error,
+        fullPath: fullPath,
+        templatePath: templatePath,
+        basePath: this.basePath,
+        currentURL: window.location.href,
+        protocol: window.location.protocol,
+        hostname: window.location.hostname,
+        pathname: window.location.pathname
+      });
+      
       // 如果 crossOrigin 导致加载失败，尝试不使用 crossOrigin
       if (this.template.crossOrigin === 'anonymous') {
         console.warn('使用 crossOrigin 加载失败，尝试不使用 crossOrigin');
@@ -590,7 +616,16 @@ class CertificateGenerator {
         return;
       }
       
-      console.warn(`模板文件 ${fullPath} 未找到`);
+      // 如果仍然失败，尝试使用绝对路径
+      if (!fullPath.startsWith('http://') && !fullPath.startsWith('https://')) {
+        const absolutePath = window.location.origin + (this.basePath || '/') + templatePath;
+        console.warn('尝试使用绝对路径:', absolutePath);
+        this.template.crossOrigin = null;
+        this.template.src = absolutePath;
+        return;
+      }
+      
+      console.error(`模板文件加载失败: ${fullPath}`);
       this.hideLoading();
       this.showError();
     };
